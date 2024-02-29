@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documento HTML con contenido Markdown</title>
+	<link rel="stylesheet" href="css/styles.css">
+
+</head>
+<body>
+
+
+<main id="markdown">
+    <!-- Aquí se cargará el contenido Markdown -->
+</main>
+
+
+
+<script>
+    // Ruta al archivo Markdown relativa a la ubicación del archivo HTML
+    var ubicacion = 'paginas/markdown.md';
+
+    // Función para cargar el contenido Markdown en el elemento <main>
+        function contenidoMarkdown(ruta) {
+            fetch(ruta)
+                .then(response => response.text())
+                .then(textoMarkdown => {
+                    console.log(textoMarkdown); // Agrega esto para ver si el contenido se carga correctamente
+                    var contenidoHTML = marked(textoMarkdown);
+                    document.getElementById('markdown').innerHTML = contenidoHTML;
+                })
+                .catch(error => console.error('Error al cargar el archivo Markdown:', error)); // Agrega un manejador de errores
+        }
+        
+
+    // Llamar a la función para cargar el contenido Markdown
+    contenidoMarkdown(ubicacion);
+</script>
+
+<!-- Incluir la biblioteca marked.js para convertir Markdown a HTML -->
+
+<script src="https://cdn.jsdelivr.net/npm/marked@3.0.7/marked.min.js"></script>
+
+</body>
+</html>
